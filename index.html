@@ -21,180 +21,7 @@
             overflow: hidden;
         }
 
-        /* מסך פתיחה */
-        #whatsappIntro {
-            position: fixed;
-            inset: 0;
-            background: rgba(255, 255, 255, 0.94);
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 25px;
-            text-align: center;
-            animation: fadeIn 1.2s ease;
-            transition: opacity 0.6s ease;
-        }
-
-            #whatsappIntro.hidden {
-                opacity: 0;
-                pointer-events: none;
-            }
-
-            #whatsappIntro h1 {
-                color: #e91e63;
-                font-size: clamp(1.7rem, 4vw, 2.4rem);
-                margin-bottom: 15px;
-            }
-
-            #whatsappIntro p {
-                font-size: clamp(1rem, 2.5vw, 1.3rem);
-                line-height: 1.7em;
-                max-width: 90%;
-                margin: 0 auto 25px;
-            }
-
-            #whatsappIntro a {
-                color: #ad1457;
-                font-weight: bold;
-                font-size: clamp(1rem, 2.3vw, 1.2rem);
-                text-decoration: underline;
-                word-break: break-word;
-            }
-
-            #whatsappIntro button {
-                background-color: #e91e63;
-                color: white;
-                border: none;
-                border-radius: 40px;
-                font-size: clamp(1rem, 2.5vw, 1.3rem);
-                padding: 15px 50px;
-                margin-top: 15px;
-                cursor: pointer;
-                transition: all .3s ease;
-                animation: pulse 1.5s infinite;
-                z-index: 10000;
-            }
-
-                #whatsappIntro button:hover {
-                    background-color: #ad1457;
-                    transform: scale(1.05);
-                }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(233,30,99, 0.6);
-            }
-
-            70% {
-                box-shadow: 0 0 0 15px rgba(233,30,99, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(233,30,99, 0);
-            }
-        }
-
-        /* אנימציית לפטופ */
-        .laptop {
-            position: relative;
-            width: clamp(120px, 30vw, 200px);
-            height: clamp(75px, 18vw, 120px);
-            background: #333;
-            border-radius: 6px 6px 0 0;
-            margin-bottom: 25px;
-            animation: bounce 2s infinite ease-in-out;
-        }
-
-            .laptop::before {
-                content: "";
-                position: absolute;
-                bottom: -15px;
-                left: -8px;
-                width: calc(100% + 16px);
-                height: 15px;
-                background: #666;
-                border-radius: 0 0 6px 6px;
-            }
-
-            .laptop::after {
-                content: "💻";
-                position: absolute;
-                top: 35%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                font-size: clamp(1.8rem, 4vw, 2.5rem);
-            }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        /* חידות */
-        .container {
-            background: rgba(255,255,255,0.9);
-            border-radius: 25px;
-            padding: clamp(20px, 4vw, 40px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            max-width: 600px;
-            width: 90%;
-            animation: fadeIn 1.2s ease-in-out;
-            position: relative;
-            z-index: 2;
-        }
-
-        h2 {
-            color: #ff4081;
-            font-weight: 800;
-            margin-top: 0;
-        }
-
-        p {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            line-height: 1.7em;
-            margin-bottom: 30px;
-        }
-
-        button {
-            background-color: #e91e63;
-            border: none;
-            color: white;
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
-            padding: 12px 30px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.2s;
-            margin-top: 10px;
-        }
-
-            button:hover {
-                background-color: #ad1457;
-                transform: scale(1.05);
-            }
-
-        .hidden {
-            display: none;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        /* רקע לבבות */
         .heart-bg {
             position: absolute;
             top: 0;
@@ -226,6 +53,138 @@
                 opacity: 0;
             }
         }
+
+        .container {
+            background: rgba(255,255,255,0.9);
+            border-radius: 25px;
+            padding: clamp(20px, 4vw, 40px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 90%;
+            animation: fadeIn 1.2s ease-in-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        h2 {
+            color: #ff4081;
+            font-weight: 800;
+            margin-top: 0;
+        }
+
+        p {
+            font-size: clamp(1rem,2.5vw,1.2rem);
+            line-height: 1.7em;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: #e91e63;
+            border: none;
+            color: white;
+            font-size: clamp(1rem,2.5vw,1.1rem);
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease,transform 0.2s;
+            margin-top: 10px;
+        }
+
+            button:hover {
+                background-color: #ad1457;
+                transform: scale(1.05);
+            }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* מסך פתיחה */
+        #whatsappIntro {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.94);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            text-align: center;
+            animation: fadeIn 1.2s ease;
+            transition: opacity 0.6s ease;
+        }
+
+            #whatsappIntro.hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
+
+        .laptop {
+            position: relative;
+            width: clamp(120px, 30vw, 200px);
+            height: clamp(75px, 18vw, 120px);
+            background: #333;
+            border-radius: 6px 6px 0 0;
+            margin-bottom: 25px;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+            .laptop::before {
+                content: "";
+                position: absolute;
+                bottom: -15px;
+                left: -8px;
+                width: calc(100% + 16px);
+                height: 15px;
+                background: #666;
+                border-radius: 0 0 6px 6px;
+            }
+
+            .laptop::after {
+                content: "💻";
+                position: absolute;
+                top: 35%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: clamp(1.8rem, 4vw, 2.5rem);
+            }
+
+        @keyframes bounce {
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* לב במשחק */
+        #heart {
+            position: absolute;
+            font-size: 3rem;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.2s;
+            z-index: 100;
+        }
+
+            #heart:hover {
+                transform: scale(1.3);
+            }
     </style>
 </head>
 <body>
@@ -242,20 +201,103 @@
             ואז התחברו ל-<strong>WhatsApp Web</strong> ופתחו את הקישור מהמחשב 💻<br><br>
             זה חלק מהחוויה 😉
         </p>
-        <button id="startButton">אנחנו מהלטופ 💻</button>
+        <button id="startButton">אנחנו מהלפטופ 💻</button>
     </div>
 
     <!-- חידה 1 -->
     <div id="riddle1" class="container hidden">
         <h2>חידה 1 🧩</h2>
         <p>מהו תאריך הלידה של נועם הגדולה?</p>
-        <input type="date" id="birthday" style="font-size:1.1em;padding:10px;border-radius:10px;border:1px solid #ccc;">
-        <br>
-        <button onclick="checkDate()">בדקי תשובה 💫</button>
+        <input type="date" id="birthday">
+        <br><button onclick="checkDate()">בדקי תשובה 💫</button>
+    </div>
+
+    <!-- חידה 2 -->
+    <div id="riddle2" class="container hidden">
+        <h2>חידה 2 👨‍👩‍👧‍👦</h2>
+        <p>כמה אחים יש לנועם הגדול (לא כולל נועם עצמו)?</p>
+        <input type="number" id="siblings" placeholder="הכניסי מספר">
+        <br><button onclick="checkSiblings()">בדקי תשובה 💫</button>
+    </div>
+
+    <!-- משחק הלב -->
+    <div id="game" class="container hidden">
+        <h2>🎮 שלב ביניים: תפסי את הלב 💖</h2>
+        <p>נסי ללחוץ על הלב לפני שהוא נעלם!</p>
+        <div id="heart">💖</div>
+    </div>
+
+    <!-- חידה 3 -->
+    <div id="riddle3" class="container hidden">
+        <h2>חידה 3 📜</h2>
+        <p>
+            הכתוב המתואר ב־
+            <a href="https://www.sefaria.org.il/Song_of_Songs.3.4?lang=he&with=all&lang2=he" target="_blank">
+                שיר השירים ג׳:ד׳
+            </a>
+            <br>מתאר סוג של קשר שמזכיר יותר את היחסים שבין:
+        </p>
+        <div class="answers">
+            <button onclick="wrong()">בנימין נתניהו לאיתמר בן־גביר</button>
+            <button onclick="wrong()">מנכ״ל גוגל לציפי שביט</button>
+            <button onclick="rightRiddle3()">ביני לבינך 💞</button>
+            <button onclick="wrong()">שחר חסון לטייס באל־על</button>
+        </div>
+    </div>
+
+    <!-- חידה 4 -->
+    <div id="riddle4" class="container hidden">
+        <h2>חידה 4 💻</h2>
+        <p>מה נועם עושה בחיים עכשיו — ולמה?</p>
+        <div class="answers">
+            <button onclick="wrong()">משלים פאזלים של חתולים 🐱</button>
+            <button onclick="wrong()">לומד להיות שף 🍳</button>
+            <button onclick="rightRiddle4()">עושה רבע תואר במדעי המחשב כדי לשרת ביחידה טכנולוגית בצה״ל 👨‍💻</button>
+            <button onclick="wrong()">מתאמן לנינג’ה ישראל 🥷</button>
+        </div>
+    </div>
+
+    <!-- חידה 5 -->
+    <div id="riddle5" class="container hidden">
+        <h2>חידה 5 💼</h2>
+        <p>במה גלית עובדת?</p>
+        <div class="answers">
+            <button onclick="wrong()">לוחמת אש 🔥</button>
+            <button onclick="wrong()">מתקינה פרגולות ומאמנת טניס 🎾</button>
+            <button onclick="wrong()">מנהלת מחלקת משאבי אנוש בעיריית חדרה</button>
+            <button onclick="rightRiddle5()">מנהלת מחלקת תשלומים בעיריית חדרה ✅</button>
+        </div>
+    </div>
+
+    <!-- חידה 6 -->
+    <div id="riddle6" class="container hidden">
+        <h2>חידה 6 🧩</h2>
+        <p>
+            השלב האחרון! <br>
+            לחצו כאן כדי לפתוח את הפאזל 👇<br><br>
+            <a href="https://www.jigsawplanet.com/?rc=play&pid=06881390c2c6" target="_blank">🎲 פתחו את הפאזל 🎲</a><br><br>
+            אחרי שתסיימו, חיזרו לכאן ולחצו:
+        </p>
+        <button onclick="sendWhatsapp()">אני מאשרת הגעה 💌</button>
+    </div>
+
+    <!-- הודעת סיום -->
+    <div id="finalMessage" class="container hidden">
+        <h2>💞 סיום המירוץ 💞</h2>
+        <p style="font-size:1.1em; line-height:1.8em;">
+            נוני, משהו בך מיוחד — אין ספק שההורים שלך עשו עבודה טובה בחינוך שלך.<br>
+            את ילדה טובה, יפה, חכמה שאוהבת לחיות את הרגע ובו זמנית לדאוג לעתיד — וזה בדיוק מה שמצא חן בעיניי.<br><br>
+            נועם, את נעימה לי, וכל רגע ביום אני רוצה להיות איתך — וזה עוד לפני שפגשתי אותך.<br>
+            אני כל־כך מחכה למחר. מי ייתן וזו לא תהיה הפגישה האחרונה שלנו 💗<br><br>
+            נוני, תתאפקי עוד קצת ומחר ב־20:30 נטייל בעתיקות קיסריה, נעשה תמונות עם הרחפן<br>
+            וסוף־סוף אראה את אשתי פנים אל פנים 💍<br><br>
+            בנימה זו — כל הכבוד גלית, גם בפתרון החידות וגם בנערה שגידלת 💐
+        </p>
     </div>
 
     <script>
-        document.getElementById('startButton').addEventListener('click', function () {
+        // מסך פתיחה
+        document.getElementById('startButton').addEventListener('click', () => {
             const intro = document.getElementById('whatsappIntro');
             intro.classList.add('hidden');
             setTimeout(() => {
@@ -265,6 +307,9 @@
             }, 500);
         });
 
+        function next(hide, show) { document.getElementById(hide).classList.add('hidden'); document.getElementById(show).classList.remove('hidden'); }
+
+        // אפקט לבבות
         function generateHearts(num) {
             const bg = document.getElementById('hearts');
             for (let i = 0; i < num; i++) {
@@ -276,13 +321,45 @@
             }
         }
 
-        function checkDate() {
-            const input = document.getElementById("birthday").value;
-            if (input === "2008-04-17") {
-                alert("🎉 תשובה נכונה! מוכנות לשלב הבא?");
-            } else {
-                alert("לא בדיוק 😅 נסי שוב!");
+        // חידה 1
+        function checkDate() { const input = document.getElementById("birthday").value; if (input === "2008-04-17") { alert("🎉 נכון מאוד!"); next('riddle1', 'riddle2'); } else alert("לא בדיוק 😅 נסי שוב!"); }
+
+        // חידה 2
+        function checkSiblings() { const num = document.getElementById("siblings").value; if (num === "3") { alert("💪 נכון מאוד! יש 3 אחים!"); next('riddle2', 'game'); startGame(); } else alert("לא נכון 😅 נסי שוב!"); }
+
+        // משחק הלב
+        function startGame() {
+            const heart = document.getElementById('heart');
+            let caught = false;
+            function moveHeart() {
+                if (caught) return;
+                const x = Math.random() * (window.innerWidth - 100);
+                const y = Math.random() * (window.innerHeight - 100);
+                heart.style.left = x + 'px';
+                heart.style.top = y + 'px';
             }
+            const interval = setInterval(moveHeart, 1300);
+            heart.onclick = function () {
+                caught = true;
+                clearInterval(interval);
+                alert("💖 תפסתן את הלב! אפשר להמשיך הלאה...");
+                next('game', 'riddle3');
+            };
+        }
+
+        // חידה 3–5
+        function wrong() { alert("לא נכון 😅 נסי שוב!"); }
+        function rightRiddle3() { alert("💘 נכון מאוד! זה לגמרי ביני לבינך 😉"); next('riddle3', 'riddle4'); }
+        function rightRiddle4() { alert("נכון מאוד 😎"); next('riddle4', 'riddle5'); }
+        function rightRiddle5() { alert("🎯 נכון! כל הכבוד!"); next('riddle5', 'riddle6'); }
+
+        // שליחת הודעה בוואטסאפ
+        function sendWhatsapp() {
+            const message = encodeURIComponent("אני מאשרת הגעה🥰");
+            const phone = "972548349998";
+            const link = `https://wa.me/${phone}?text=${message}`;
+            window.open(link, '_blank');
+            next('riddle6', 'finalMessage');
         }
     </script>
 </body>
