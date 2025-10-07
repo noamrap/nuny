@@ -21,6 +21,7 @@ body {
   overflow: hidden;
 }
 
+/* חלון פתיחה */
 #whatsappIntro {
   position: fixed;
   inset: 0;
@@ -124,11 +125,8 @@ body {
   position: relative;
   z-index: 2;
 }
-h1 {color:#e91e63;font-size:clamp(2rem, 5vw, 2.8rem);margin-bottom:0.3em;}
 h2 {color:#ff4081;font-weight:800;margin-top:0;}
 p {font-size:clamp(1rem, 2.5vw, 1.2rem);line-height:1.7em;margin-bottom:30px;}
-a {color:#e91e63;font-weight:bold;text-decoration:none;transition:color .3s;}
-a:hover{color:#ad1457;text-decoration:underline;}
 button {
   background-color: #e91e63;
   border: none;
@@ -142,8 +140,6 @@ button {
 }
 button:hover { background-color: #ad1457; transform:scale(1.05);}
 .hidden{display:none;}
-#heart{position:absolute;font-size:3rem;cursor:pointer;user-select:none;transition:transform 0.2s;}
-#heart:hover{transform:scale(1.3);}
 @keyframes fadeIn{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 .heart-bg{
   position:absolute;
@@ -179,7 +175,7 @@ button:hover { background-color: #ad1457; transform:scale(1.05);}
     ואז התחברו ל-<strong>WhatsApp Web</strong> ופתחו את הקישור מהמחשב 💻<br><br>
     זה חלק מהחוויה 😉
   </p>
-  <button onclick="startRace()">אנחנו מהלטופ 💻</button>
+  <button onclick="startRace()">אנחנו מהלפטופ 💻</button>
 </div>
 
 <!-- חידה 1 -->
@@ -196,10 +192,6 @@ function startRace(){
   document.getElementById('whatsappIntro').classList.add('hidden');
   document.getElementById('riddle1').classList.remove('hidden');
   generateHearts(25);
-}
-function next(hide,show){
-  document.getElementById(hide).classList.add('hidden');
-  document.getElementById(show).classList.remove('hidden');
 }
 function generateHearts(num){
   const bg=document.getElementById('hearts');
