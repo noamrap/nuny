@@ -1,316 +1,561 @@
-
 <!DOCTYPE html>
-<html lang="he">
+<html lang="he" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>מירוץ לדייט 💘</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;800&display=swap');
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>משחק הזוגיות שלנו — SPICY MODE 🔥</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg1: #0d0d0f; /* שחור עמוק */
+            --bg2: #1a0b0e; /* בורדו כהה */
+            --card: #121216ee;
+            --text: #e9e9e9;
+            --accent: #ff2740; /* אדום פלפל */
+            --accent-2: #ff5b7a; /* ורוד פלמינגו */
+            --ok: #22c55e;
+            --warn: #f59e0b;
+            --err: #ef4444;
+        }
 
-body {
-  direction: rtl;
-  font-family: 'Heebo', sans-serif;
-  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
-  height: 100vh;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #333;
-  overflow: hidden;
-}
+        * {
+            box-sizing: border-box
+        }
 
-.container {
-  background: rgba(255,255,255,0.9);
-  border-radius: 25px;
-  padding: clamp(20px, 4vw, 40px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  max-width: 600px;
-  width: 90%;
-  animation: fadeIn 1.2s ease-in-out;
-  position: relative;
-  z-index: 2;
-}
+        html, body {
+            height: 100%
+        }
 
-h2 { color:#ff4081;font-weight:800;margin-top:0; }
-p { font-size:clamp(1rem,2.5vw,1.2rem);line-height:1.7em;margin-bottom:30px; }
-button {
-  background-color:#e91e63;
-  border:none;
-  color:white;
-  font-size:clamp(1rem,2.5vw,1.1rem);
-  padding:12px 30px;
-  border-radius:30px;
-  cursor:pointer;
-  transition:background 0.3s ease,transform 0.2s;
-  margin-top:10px;
-}
-button:hover{background-color:#ad1457;transform:scale(1.05);}
-.hidden{display:none;}
+        body {
+            margin: 0;
+            font-family: 'Heebo',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+            color: var(--text);
+            background: radial-gradient(1200px 700px at 70% -10%, rgba(255,39,64,.18), transparent 60%), radial-gradient(1000px 600px at 10% 110%, rgba(255,91,122,.12), transparent 60%), linear-gradient(160deg,var(--bg1),var(--bg2));
+            background-attachment: fixed;
+            display: grid;
+            place-items: center;
+            overflow-x: hidden
+        }
 
-@keyframes fadeIn{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+        .smoke {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(600px 250px at 80% 0%, rgba(255,39,64,.07), transparent), radial-gradient(700px 400px at 20% 100%, rgba(255,91,122,.06), transparent);
+            mix-blend-mode: screen;
+            z-index: 0
+        }
 
-/* רקע לבבות */
-.heart-bg{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:1;}
-.heart-bg span{position:absolute;display:block;width:20px;height:20px;background:rgba(255,105,180,0.4);animation:float 10s linear infinite;border-radius:50%;}
-@keyframes float{0%{transform:translateY(0) rotate(0deg);opacity:1;}100%{transform:translateY(-1000px) rotate(360deg);opacity:0;}}
+        .hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden
+        }
 
-/* מסך פתיחה */
-#whatsappIntro {
-  position: fixed;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.94);
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 25px;
-  text-align: center;
-  animation: fadeIn 1.2s ease;
-  transition: opacity 0.6s ease;
-}
-#whatsappIntro.hidden{opacity:0;pointer-events:none;}
-.laptop {
-  position: relative;
-  width: clamp(120px, 30vw, 200px);
-  height: clamp(75px, 18vw, 120px);
-  background: #333;
-  border-radius: 6px 6px 0 0;
-  margin-bottom: 25px;
-  animation: bounce 2s infinite ease-in-out;
-}
-.laptop::before {
-  content: "";
-  position: absolute;
-  bottom: -15px;
-  left: -8px;
-  width: calc(100% + 16px);
-  height: 15px;
-  background: #666;
-  border-radius: 0 0 6px 6px;
-}
-.laptop::after {
-  content: "💻";
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-}
-@keyframes bounce {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+        .heart {
+            position: absolute;
+            font-size: clamp(14px,2.2vw,28px);
+            opacity: .2;
+            animation: floatUp linear var(--t) infinite;
+            filter: drop-shadow(0 6px 10px rgba(255,39,64,.25))
+        }
 
-/* לב במשחק */
-#heart {
-  position: absolute;
-  font-size: 3rem;
-  cursor: pointer;
-  user-select: none;
-  transition: transform 0.2s;
-  z-index: 100;
-}
-#heart:hover { transform: scale(1.3); }
-</style>
+        @keyframes floatUp {
+            from {
+                transform: translateY(100vh) translateX(var(--x))
+            }
+
+            to {
+                transform: translateY(-20vh) translateX(calc(var(--x)*1.2));
+                opacity: .06
+            }
+        }
+
+        .app {
+            width: min(940px,96vw);
+            z-index: 1
+        }
+
+        .card {
+            background: var(--card);
+            backdrop-filter: blur(8px);
+            border-radius: 22px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.5);
+            padding: clamp(18px,2.4vw,28px);
+            border: 1px solid rgba(255,255,255,.04)
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            justify-content: space-between;
+            margin-bottom: 8px
+        }
+
+        .title {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .logo {
+            width: 46px;
+            height: 46px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: linear-gradient(135deg,var(--accent),var(--accent-2));
+            color: #fff;
+            font-weight: 800
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(20px,3.4vw,34px)
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .btn {
+            border: 0;
+            outline: none;
+            border-radius: 14px;
+            padding: 12px 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s transform, .2s box-shadow, .2s opacity
+        }
+
+            .btn:active {
+                transform: translateY(1px)
+            }
+
+        .btn-primary {
+            background: linear-gradient(135deg,var(--accent),var(--accent-2));
+            color: #fff;
+            box-shadow: 0 8px 22px rgba(255,39,64,.35)
+        }
+
+        .btn-ghost {
+            background: #1a1a1e;
+            color: var(--text);
+            box-shadow: 0 2px 10px rgba(0,0,0,.35);
+            border: 1px solid rgba(255,255,255,.06)
+        }
+
+        .mode {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+
+            .mode .btn {
+                min-width: 180px
+            }
+
+        .section {
+            margin-top: 16px
+        }
+
+        .muted {
+            color: #bdbdbd;
+            font-size: 14px
+        }
+
+        .progress {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 6px 0 16px
+        }
+
+        .bar {
+            flex: 1;
+            height: 10px;
+            background: #222229;
+            border-radius: 999px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.06)
+        }
+
+            .bar > span {
+                display: block;
+                height: 100%;
+                width: 0;
+                background: linear-gradient(135deg,var(--accent),var(--accent-2));
+                transition: width .3s ease
+            }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 13px;
+            background: #19191d;
+            border: 1px solid rgba(255,255,255,.08)
+        }
+
+        .q-card {
+            display: grid;
+            gap: 16px
+        }
+
+        .q-title {
+            font-size: clamp(18px,2.5vw,26px);
+            font-weight: 800
+        }
+
+        .answers {
+            display: grid;
+            gap: 10px
+        }
+
+        .answer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: #141418;
+            border: 1px solid #2a2a32;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: .18s transform, .18s box-shadow, .18s background
+        }
+
+            .answer:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 8px 20px rgba(0,0,0,.45)
+            }
+
+            .answer.correct {
+                outline: 2px solid var(--ok);
+                background: #0e1a12
+            }
+
+            .answer.wrong {
+                outline: 2px solid var(--err);
+                background: #1a0e11
+            }
+
+        .footer {
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .hidden {
+            display: none !important
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            place-items: center;
+            background: rgba(0,0,0,.45);
+            z-index: 20
+        }
+
+            .modal .box {
+                background: #16161a;
+                width: min(560px,92vw);
+                padding: 22px;
+                border-radius: 18px;
+                border: 1px solid rgba(255,255,255,.08);
+                box-shadow: 0 18px 60px rgba(0,0,0,.6)
+            }
+
+        .end {
+            text-align: center;
+            display: grid;
+            gap: 14px
+        }
+
+        .score {
+            font-size: clamp(28px,4vw,46px);
+            font-weight: 800
+        }
+
+        .share {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        .confetti-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10
+        }
+
+        .player {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+            .player .btn {
+                padding: 10px 12px
+            }
+
+            .player .muted {
+                font-size: 12px
+            }
+    </style>
 </head>
 <body>
-<div class="heart-bg" id="hearts"></div>
+    <div class="smoke" aria-hidden="true"></div>
+    <div class="hearts" aria-hidden="true" id="hearts"></div>
+    <canvas class="confetti-canvas" id="confetti"></canvas>
 
-<!-- מסך פתיחה -->
-<div id="whatsappIntro">
-  <div class="laptop"></div>
-  <h1>לפני שמתחילים...</h1>
-  <p>
-    תעתיקו את הקישור הזה:<br>
-    <a href="https://noamrap.github.io/nuny/" target="_blank">https://noamrap.github.io/nuny/</a><br><br>
-    שלחו אותו לעצמכן ב-WhatsApp 📲<br>
-    ואז התחברו ל-<strong>WhatsApp Web</strong> ופתחו את הקישור מהמחשב 💻<br><br>
-    זה חלק מהחוויה 😉
-  </p>
-  <button id="startButton">אנחנו מהלפטופ 💻</button>
-</div>
+    <div class="app">
+        <div class="card">
+            <header>
+                <div class="title">
+                    <div class="logo">🔥</div>
+                    <h1>משחק הזוגיות שלנו — Spicy Only</h1>
+                </div>
+                <div class="controls">
+                    <div class="player">
+                        <button class="btn btn-ghost" id="musicToggle" title="נגן/השתק">🎵 נגן</button>
+                        <span class="muted" id="musicState">מושתק</span>
+                    </div>
+                </div>
+            </header>
 
-<!-- חידה 1 -->
-<div id="riddle1" class="container hidden">
-  <h2>חידה 1 🧩</h2>
-  <p>מהו תאריך הלידה של נועם הגדולה?</p>
-  <input type="date" id="birthday">
-  <br><button onclick="checkDate()">בדקי תשובה 💫</button>
-</div>
+            <!-- מסך פתיחה + בחירת מוד -->
+            <section class="section" id="start">
+                <p class="muted" style="margin-top:0">הערב הולך להיות חם. עונים נכון – צוברים 💗. טועים – מקבלים "חובה" רנדומלית מהמאגרים שלנו 😉</p>
+                <div class="mode" style="margin-bottom:10px">
+                    <button class="btn btn-ghost" id="modeSoft">עדין ורומנטי</button>
+                    <button class="btn btn-ghost" id="modeFun">מצחיק ומתוק</button>
+                    <button class="btn btn-primary" id="modeSpicy">SPICY — מתחילים</button>
+                </div>
+            </section>
 
-<!-- חידה 2 -->
-<div id="riddle2" class="container hidden">
-  <h2>חידה 2 👨‍👩‍👧‍👦</h2>
-  <p>כמה אחים יש לנועם הגדול (לא כולל נועם עצמו)?</p>
-  <input type="number" id="siblings" placeholder="הכניסי מספר">
-  <br><button onclick="checkSiblings()">בדקי תשובה 💫</button>
-</div>
+            <!-- פס התקדמות -->
+            <div class="progress hidden" id="progressWrap">
+                <span class="pill">שאלה <span id="qIndex">1</span>/<span id="qTotal">10</span></span>
+                <div class="bar"><span id="bar"></span></div>
+                <span class="pill" id="scorePill">💗 0</span>
+            </div>
 
-<!-- משחק הלב -->
-<div id="game" class="container hidden">
-  <h2>🎮 שלב ביניים: תפסי את הלב 💖</h2>
-  <p>נסי ללחוץ על הלב לפני שהוא נעלם!</p>
-  <div id="heart">💖</div>
-</div>
+            <!-- קלף שאלה -->
+            <section class="q-card section hidden" id="qCard">
+                <div class="q-title" id="qTitle">כאן תופיע השאלה</div>
+                <div class="answers" id="answers"></div>
+                <div class="footer">
+                    <span class="muted" id="feedback"></span>
+                    <div style="display:flex; gap:8px">
+                        <button class="btn btn-ghost" id="skipBtn" title="דלג (לא נספר בציון)">דלג</button>
+                        <button class="btn btn-primary" id="nextBtn" disabled>הבא ▶</button>
+                    </div>
+                </div>
+            </section>
 
-<!-- חידה 3 -->
-<div id="riddle3" class="container hidden">
-  <h2>חידה 3 📜</h2>
-  <p>
-    הכתוב המתואר ב־
-    <a href="https://www.sefaria.org.il/Song_of_Songs.3.4?lang=he&with=all&lang2=he" target="_blank">
-      שיר השירים ג׳:ד׳
-    </a>
-    <br>מתאר סוג של קשר שמזכיר יותר את היחסים שבין:
-  </p>
-  <div class="answers">
-    <button onclick="wrong()">בנימין נתניהו לאיתמר בן־גביר</button>
-    <button onclick="wrong()">מנכ״ל גוגל לציפי שביט</button>
-    <button onclick="rightRiddle3()">ביני לבינך 💞</button>
-    <button onclick="wrong()">שחר חסון לטייס באל־על</button>
-  </div>
-</div>
+            <!-- מסך סיום -->
+            <section class="end section hidden" id="end">
+                <div class="score" id="finalScore">ציון: 0</div>
+                <div id="endMsg">סיימתם כמו אלופים 💖</div>
+                <div class="share">
+                    <button class="btn btn-primary" id="againBtn">שחקו שוב</button>
+                    <a class="btn btn-ghost" id="whBtn" target="_blank" rel="noopener">לשתף בווצאפ</a>
+                </div>
+                <p class="muted">רוצה לערוך שאלות? ערוך את המערך <strong>QUESTIONS</strong> בקוד למטה.</p>
+            </section>
+        </div>
+    </div>
 
-<!-- חידה 4 -->
-<div id="riddle4" class="container hidden">
-  <h2>חידה 4 💻</h2>
-  <p>מה נועם עושה בחיים עכשיו — ולמה?</p>
-  <div class="answers">
-    <button onclick="wrong()">משלים פאזלים של חתולים 🐱</button>
-    <button onclick="wrong()">לומד להיות שף 🍳</button>
-    <button onclick="rightRiddle4()">עושה רבע תואר במדעי המחשב כדי לשרת ביחידה טכנולוגית בצה״ל 👨‍💻</button>
-    <button onclick="wrong()">מתאמן לנינג’ה ישראל 🥷</button>
-  </div>
-</div>
+    <!-- מוזיקת רקע (אותה רצועה כמו מקודם) -->
+    <audio id="bgm" preload="auto" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2f3d5c8cd6.mp3?filename=romantic-110997.mp3" type="audio/mpeg">
+    </audio>
 
-<!-- חידה 5 -->
-<div id="riddle5" class="container hidden">
-  <h2>חידה 5 💼</h2>
-  <p>במה גלית עובדת?</p>
-  <div class="answers">
-    <button onclick="wrong()">לוחמת אש 🔥</button>
-    <button onclick="wrong()">מתקינה פרגולות ומאמנת טניס 🎾</button>
-    <button onclick="wrong()">מנהלת מחלקת משאבי אנוש בעיריית חדרה</button>
-    <button onclick="rightRiddle5()">מנהלת מחלקת תשלומים בעיריית חדרה</button>
-  </div>
-</div>
+    <!-- מודל חובות -->
+    <div class="modal" id="punishModal" role="dialog" aria-modal="true">
+        <div class="box">
+            <h3 style="margin-top:0">חובה רנדומלית 🔥</h3>
+            <p id="punishText">…</p>
+            <div style="display:flex; gap:8px; justify-content:flex-end">
+                <button class="btn btn-ghost" id="skipPunish">נדלג</button>
+                <button class="btn btn-primary" id="okPunish">בוצע ✔️</button>
+            </div>
+        </div>
+    </div>
 
-<!-- חידה 6 -->
-<div id="riddle6" class="container hidden">
-  <h2>חידה 6 🎾</h2>
-  <p>מה הספורט האהוב על ליה?</p>
-  <div class="answers">
-    <button onclick="wrong()">כדורסל 🏀</button>
-    <button onclick="wrong()">שחייה 🏊‍♀️</button>
-    <button onclick="rightRiddle6()">טניס 🎾</button>
-    <button onclick="wrong()">ריצה 🏃‍♀️</button>
-  </div>
-</div>
+    <canvas class="confetti-canvas" id="confettiTop"></canvas>
 
-<!-- חידה 7 -->
-<div id="riddle7" class="container hidden">
-  <h2>חידה 7 🧩</h2>
-  <p>
-    השלב האחרון! <br>
-    לחצו כאן כדי לפתוח את הפאזל 👇<br><br>
-    <a href="https://www.jigsawplanet.com/?rc=play&pid=06881390c2c6" target="_blank">🎲 פתחו את הפאזל 🎲</a><br><br>
-    אחרי שתסיימו, חיזרו לכאן ולחצו:
-  </p>
-  <button onclick="next('riddle7','finalMessage')">סיימנו את הפאזל 💖</button>
-</div>
+    <script>
+        // ===== HEARTS BG =====
+        (function makeHearts() {
+            const wrap = document.getElementById('hearts');
+            const N = 26; const emojis = ['❤', '💗', '💖', '💞', '💘'];
+            for (let i = 0; i < N; i++) {
+                const s = document.createElement('div'); s.className = 'heart'; s.textContent = emojis[i % emojis.length];
+                const left = Math.random() * 100, dur = 18 + Math.random() * 18, x = (Math.random() - .5) * 80;
+                s.style.left = left + '%'; s.style.setProperty('--t', dur + 's'); s.style.setProperty('--x', x + 'px'); s.style.animationDelay = (-Math.random() * dur) + 's';
+                wrap.appendChild(s);
+            }
+        })();
 
-<!-- הודעת סיום -->
-<div id="finalMessage" class="container hidden">
-  <h2>💞 סיום המירוץ 💞</h2>
-  <p style="font-size:1.1em; line-height:1.8em;">
-    נוני, משהו בך מיוחד — אין ספק שההורים שלך עשו עבודה טובה בחינוך שלך.<br>
-    את ילדה טובה, יפה, חכמה שאוהבת לחיות את הרגע ובו זמנית לדאוג לעתיד — וזה בדיוק מה שמצא חן בעיניי.<br><br>
-    נועם, את נעימה לי, וכל רגע ביום אני רוצה להיות איתך — וזה עוד לפני שפגשתי אותך.<br>
-    אני כל־כך מחכה למחר. מי ייתן וזו לא תהיה הפגישה האחרונה שלנו 💗<br><br>
-    נוני, תתאפקי עוד קצת ומחר ב־20:30 נטייל בעתיקות קיסריה, נעשה תמונות עם הרחפן<br>
-    וסוף־סוף אראה את אשתי פנים אל פנים 💍<br><br>
-    בנימה זו — כל הכבוד גלית, גם בפתרון החידות וגם בנערה שגידלת 💐
-  </p>
-  <button id="confirmBtn">אני מאשרת הגעה 💌</button>
-</div>
+        // ===== CONFETTI =====
+        const confetti = (() => {
+            const canvas = document.getElementById('confetti');
+            const ctx = canvas.getContext('2d'); let W, H, raf, pieces = [];
+            function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight }
+            addEventListener('resize', resize); resize();
+            function burst(x = W / 2, y = H / 2, n = 90) { for (let i = 0; i < n; i++) { pieces.push({ x, y, vx: (Math.random() * 6 - 3), vy: (Math.random() * -6 - 2), g: .15 + Math.random() * .08, s: 3 + Math.random() * 3, a: 1 }); } if (!raf) loop(); }
+            function loop() { raf = requestAnimationFrame(loop); ctx.clearRect(0, 0, W, H); pieces = pieces.filter(p => p.a > 0 && p.y < H + 20); for (const p of pieces) { p.vy += p.g; p.x += p.vx; p.y += p.vy; p.a -= .007; ctx.globalAlpha = p.a; ctx.fillStyle = ['#ff2740', '#ff5b7a', '#ffd1dc', '#ffb3c6'][Math.floor(Math.random() * 4)]; ctx.fillRect(p.x, p.y, p.s, p.s); } if (!pieces.length) { cancelAnimationFrame(raf); raf = null } }
+            return { burst };
+        })();
 
-<script>
-// פתיחה – מתוקן שיעבור מיד לחידה הראשונה
-document.getElementById('startButton').addEventListener('click',()=>{
-  document.getElementById('whatsappIntro').style.display='none';
-  document.getElementById('riddle1').classList.remove('hidden');
-  generateHearts(25);
-});
+        const QUESTIONS = [
+            { type: 'mc', q: 'באיזה עיר היה הדייט הראשון שלנו?', options: ['תל אביב', 'נתניה', 'קיסריה', 'חיפה'], a: 2 },
+            { type: 'mc', q: 'מה המאכל שאת הכי אוהבת?', options: ['פיצה', 'סושי', 'בננה בפיתה', 'פסטה'], a: 1 },
+            { type: 'mc', q: 'מה המאכל שאני הכי אוהב?', options: ['פסטה', 'שניצל', 'פלאפל', 'חביתה'], a: 1 },
+            { type: 'text', q: 'איך נועם קורא לחבר שלו?', answer: ['גנץ'] },
+            { type: 'mc', q: 'מה הכינוי שאני קורא לך?', options: ['בובו', 'נוניצקה', 'נסיכה', 'דובי'], a: 1 },
+            { type: 'mc', q: 'מי נרדם קודם?', options: ['נועם הגדול', 'נועם הגדולה', 'שנינו ביחד', 'תלוי בסרט'], a: 1 },
+            { type: 'mc', q: 'אם היינו עכשיו בחופשה, לאן היינו טסים?', options: ['יוון', 'צרפת', 'יפן', 'איטליה'], a: 2 },
+            { type: 'text', q: 'כששיחקנו GeoGuessr, איזה יעד יצא הכי הרבה פעמים?', answer: ['חיפה'] },
+            { type: 'mc', q: 'מה צבע העיניים של נועם?', options: ['חום', 'כחול', 'ירוק', 'אפור'], a: 1 },
+            { type: 'mc', q: 'מה נועם הכי אוהב להריח בנועם הגדולה?', options: ['הבושם שלה', 'את השיער שלה', 'הסדין שלה', 'את האוכל שלה'], a: 1 },
 
-function next(hide,show){
-  document.getElementById(hide).classList.add('hidden');
-  document.getElementById(show).classList.remove('hidden');
-}
 
-// רקע לבבות
-function generateHearts(num){
-  const bg=document.getElementById('hearts');
-  for(let i=0;i<num;i++){
-    const h=document.createElement('span');
-    h.style.left=Math.random()*100+'%';
-    h.style.animationDuration=(5+Math.random()*10)+'s';
-    h.style.width=h.style.height=(10+Math.random()*20)+'px';
-    bg.appendChild(h);
-  }
-}
+            // שאלות ידע כללי בינוניות
+            { type: 'mc', q: 'כמה יבשות יש בעולם?', options: ['5', '6', '7', '8'], a: 2 },
+            { type: 'mc', q: 'מהו הכוכב הקרוב ביותר לשמש?', options: ['נוגה', 'כדור הארץ', 'מרקורי', 'מאדים'], a: 2 },
+            { type: 'mc', q: 'מי כתב את המחזה רומיאו ויוליה?', options: ['צ׳ארלס דיקנס', 'ויליאם שייקספיר', 'ג׳ורג׳ אורוול', 'לאונרדו דה וינצ׳י'], a: 1 },
+            { type: 'mc', q: 'איזו מדינה נחשבת לגדולה ביותר בעולם בשטחה?', options: ['קנדה', 'סין', 'רוסיה', 'ארה״ב'], a: 2 },
+            { type: 'mc', q: 'מהו המטבע הרשמי של יפן?', options: ['ין', 'וואן', 'דולר', 'פזו'], a: 0 },
+            { type: 'mc', q: 'באיזו שנה נחת האדם הראשון על הירח?', options: ['1965', '1969', '1971', '1975'], a: 1 },
+            { type: 'mc', q: 'כמה דקות יש בשעה ורבע?', options: ['60', '75', '90', '120'], a: 2 },
+            { type: 'mc', q: 'מהי העיר הבירה של קנדה?', options: ['טורונטו', 'מונטריאול', 'אוטווה', 'ונקובר'], a: 2 },
+            { type: 'mc', q: 'איזה יסוד כימי מסומן באות H?', options: ['חמצן', 'מימן', 'הליום', 'פחמן'], a: 1 },
+            { type: 'mc', q: 'באיזו יבשת נמצאת מדינת מצרים?', options: ['אסיה', 'אפריקה', 'אירופה', 'דרום אמריקה'], a: 1 },
 
-// חידות
-function checkDate(){
-  const input=document.getElementById("birthday").value;
-  if(input==="2008-04-17"){
-    alert("🎉 נכון מאוד!");
-    next('riddle1','riddle2');
-  } else alert("לא בדיוק 😅 נסי שוב!");
-}
-function checkSiblings(){
-  const num=document.getElementById("siblings").value;
-  if(num==="3"){
-    alert("💪 נכון מאוד! יש 3 אחים!");
-    next('riddle2','game');
-    startGame();
-  } else alert("לא נכון 😅 נסי שוב!");
-}
 
-// משחק הלב
-function startGame(){
-  const heart=document.getElementById('heart');
-  let caught=false;
-  function moveHeart(){
-    if(caught)return;
-    const x=Math.random()*(window.innerWidth-100);
-    const y=Math.random()*(window.innerHeight-100);
-    heart.style.left=x+'px';
-    heart.style.top=y+'px';
-  }
-  const interval=setInterval(moveHeart, 900 + Math.random()*400);
-  heart.onclick=function(){
-    caught=true;
-    clearInterval(interval);
-    alert("💖 תפסתן את הלב! אפשר להמשיך הלאה...");
-    next('game','riddle3');
-  };
-}
+            // שאלות קשות
+            { type: 'mc', q: 'מהו שמו של החור השחור שבמרכז גלקסיית שביל החלב?', options: ['סגיטריוס A*', 'אוריון B', 'קוואזר X1', 'אנדרומדה C'], a: 0 },
+            { type: 'mc', q: 'באיזו שנה התרחשה המהפכה הצרפתית?', options: ['1776', '1789', '1804', '1812'], a: 1 },
 
-function wrong(){alert("לא נכון 😅 נסי שוב!");}
-function rightRiddle3(){alert("💘 נכון מאוד! זה לגמרי ביני לבינך 😉");next('riddle3','riddle4');}
-function rightRiddle4(){alert("נכון מאוד 😎");next('riddle4','riddle5');}
-function rightRiddle5(){alert("🎯 נכון! כל הכבוד!");next('riddle5','riddle6');}
-function rightRiddle6(){alert("נכון מאוד! 🎾 את באמת מכירה את ליה!");next('riddle6','riddle7');}
 
-// שליחת הודעה בווטסאפ
-document.getElementById('confirmBtn').addEventListener('click',()=>{
-  const message=encodeURIComponent("אני מאשרת הגעה");
-  const phone="972548349998";
-  const link=`https://wa.me/${phone}?text=${message}`;
-  window.open(link,'_blank');
-});
-</script>
+            // שאלות קלות במיוחד
+            { type: 'mc', q: 'כמה רגליים יש לעכביש?', options: ['6', '8', '10', '12'], a: 1 },
+            { type: 'mc', q: 'מה צבע הדם של בני האדם?', options: ['כחול', 'אדום', 'סגול', 'שחור'], a: 1 },
+            { type: 'mc', q: 'כמה שניות יש בדקה?', options: ['30', '45', '60', '90'], a: 2 },
+            { type: 'mc', q: 'איזה חיה נובחת?', options: ['חתול', 'כלב', 'דג', 'פרה'], a: 1 },
+            { type: 'mc', q: 'מהי בירת ישראל?', options: ['תל אביב', 'ירושלים', 'חיפה', 'באר שבע'], a: 1 }
+        ];
+
+        const PUNISH = [
+            'תבחרי מקום מעניין שאני אגע בו 10 שניות רצוף את בוחרת מקום 😉',
+            'תביאי לי נשיקה איפה שבאלך)',
+            'אני בוחר מקום לגעת בו ל5 שניות אבל',
+            'אני בוחר מקום שאת נוגעת בו ל10 שניות',
+            'את בוחרת מקום שאת נוגעת בו אבל 5 שניות',
+            'אני מתחת לבגד',
+            'את מתחת לבגד',
+            'נשיקה איפה שבאלך',
+            'נשיקה איפה שאני בוחר',
+            'נשיקה עם לשון והרבה זמן',
+            'נשיקה תוך כדי שאני מרים אותך',
+            'חיבוק עם נגיעות ונשיקה',
+            'כל אחד אומר 3 דברים שמושכים אותו בשני',
+            'אני יושב עליך ל10 שניות',
+            'את יושבת עלי ל10 שניות',
+        ];
+
+        // ===== STATE & DOM =====
+        const state = { idx: 0, score: 0, order: [...Array(QUESTIONS.length).keys()], answered: false };
+        const el = id => document.getElementById(id);
+        const qCard = el('qCard'), qTitle = el('qTitle'), answers = el('answers'), qIndex = el('qIndex'), qTotal = el('qTotal'), bar = el('bar'), progressWrap = el('progressWrap'), feedback = el('feedback'), scorePill = el('scorePill'), end = el('end'), finalScore = el('finalScore'), endMsg = el('endMsg'), whBtn = el('whBtn');
+        const nextBtn = el('nextBtn'), skipBtn = el('skipBtn');
+        const start = el('start');
+
+        // Music
+        const bgm = el('bgm'); const musicToggle = el('musicToggle'); const musicState = el('musicState'); let musicOn = false;
+        musicToggle.addEventListener('click', async () => { try { if (!musicOn) { await bgm.play(); musicOn = true; musicState.textContent = 'מנגן'; musicToggle.innerHTML = '⏸️ השתק'; } else { bgm.pause(); musicOn = false; musicState.textContent = 'מושתק'; musicToggle.innerHTML = '🎵 נגן'; } } catch (e) { alert('ייתכן שהדפדפן חסם ניגון אוטומטי. נסו ללחוץ שוב.'); } });
+        document.addEventListener('click', async function once() { document.removeEventListener('click', once); try { await bgm.play(); musicOn = true; musicState.textContent = 'מנגן'; musicToggle.innerHTML = '⏸️ השתק'; } catch (e) { } }, { once: true, capture: true });
+
+        // Modes
+        el('modeSoft').addEventListener('click', () => { alert(" נראלך?! היום מתפרעים!"); });
+        el('modeFun').addEventListener('click', () => { alert('מצחיק ומתוק זה לא היום.. אולי רק מתוק'); });
+        el('modeSpicy').addEventListener('click', () => { start.classList.add('hidden'); qCard.classList.remove('hidden'); progressWrap.classList.remove('hidden'); initGame(); });
+
+        function initGame() { state.idx = 0; state.score = 0; state.answered = false; scorePill.textContent = '💗 0'; qTotal.textContent = state.order.length; showQuestion(); }
+
+        nextBtn.addEventListener('click', () => { state.idx++; if (state.idx >= state.order.length) return finish(); showQuestion(); });
+        skipBtn.addEventListener('click', () => { feedback.textContent = 'דילוג אלגנטי. ממשיכים ❤️'; nextBtn.disabled = false; });
+
+        function pct() { return Math.round(100 * state.idx / state.order.length) }
+        function normalize(t) { return (t || '').toString().trim().toLowerCase().replace(/["'״׳\-]/g, '').replace(/\s+/g, ' ') }
+
+        function showQuestion() {
+            state.answered = false; feedback.textContent = ''; nextBtn.disabled = true;
+            const qi = state.order[state.idx]; const q = QUESTIONS[qi];
+            qIndex.textContent = state.idx + 1; bar.style.width = pct() + '%'; qTitle.textContent = q.q; answers.innerHTML = '';
+            if (q.type === 'mc') {
+                q.options.forEach((opt, i) => {
+                    const btn = document.createElement('button'); btn.className = 'answer'; btn.type = 'button'; btn.textContent = opt;
+                    btn.addEventListener('click', () => selectAnswer(btn, i === q.a)); answers.appendChild(btn);
+                });
+            } else { // text
+                const wrap = document.createElement('div'); wrap.style.display = 'grid'; wrap.style.gap = '10px';
+                const input = document.createElement('input'); input.type = 'text'; input.placeholder = 'כתבו כאן תשובה'; input.style.padding = '12px 14px'; input.style.border = '1px solid #2a2a32'; input.style.borderRadius = '12px'; input.style.background = '#0f0f13'; input.style.color = 'var(--text)';
+                const btn = document.createElement('button'); btn.className = 'btn btn-primary'; btn.textContent = 'בדיקה';
+                btn.addEventListener('click', () => {
+                    const val = normalize(input.value);
+                    let ok = false;
+                    if (Array.isArray(q.answer)) ok = q.answer.some(a => val.includes(normalize(a)) || normalize(a).includes(val));
+                    else ok = val === normalize(q.answer);
+                    selectAnswer(btn, ok, true);
+                });
+                wrap.appendChild(input); wrap.appendChild(btn); answers.appendChild(wrap);
+            }
+        }
+
+        function selectAnswer(node, correct, isText = false) {
+            if (state.answered) return; state.answered = true;
+            if (!isText) { [...answers.querySelectorAll('.answer')].forEach(b => b.disabled = true); node.classList.add(correct ? 'correct' : 'wrong'); }
+            if (correct) { state.score++; scorePill.textContent = '💗 ' + state.score; feedback.textContent = 'בול! 🌟'; confetti.burst(); }
+            else { feedback.textContent = 'פספסת… חובה רנדומלית בדרך!'; showPunish(); }
+            nextBtn.disabled = false;
+        }
+
+        // Punish modal
+        const punishModal = document.getElementById('punishModal');
+        const punishText = document.getElementById('punishText');
+        document.getElementById('okPunish').addEventListener('click', () => { punishModal.style.display = 'none' });
+        document.getElementById('skipPunish').addEventListener('click', () => { punishModal.style.display = 'none' });
+        function showPunish() {
+            punishText.textContent = PUNISH[Math.floor(Math.random() * PUNISH.length)];
+            punishModal.style.display = 'grid';
+        }
+
+        function finish() {
+            qCard.classList.add('hidden'); progressWrap.classList.add('hidden'); end.classList.remove('hidden');
+            finalScore.textContent = 'ציון: ' + state.score + '/' + state.order.length;
+            const rate = state.score / state.order.length;
+            endMsg.textContent = rate >= .8 ? 'חם פה… המשכיות מתבקשת 😉' : (rate >= .6 ? 'יש מתח באוויר – סיבוב נוסף?' : 'הציון לא קובע, הקרבה כן. ממשיכים?');
+            confetti.burst(innerWidth / 2, innerHeight / 3, 140);
+            const shareTxt = encodeURIComponent(`סיימנו את "Spicy Mode" עם ציון ${state.score}/${state.order.length} 🔥`);
+            whBtn.href = `https://wa.me/?text=${shareTxt}`;
+        }
+    </script>
 </body>
 </html>
-
