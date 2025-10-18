@@ -1,219 +1,250 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>משחק הזוגיות שלנו 💞</title>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Heebo', sans-serif;
-      background: linear-gradient(135deg, #0f0f13, #1f0a0f);
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-    }
-    .card {
-      background: rgba(30, 30, 35, 0.9);
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(255, 60, 90, 0.3);
-      width: min(90%, 600px);
-    }
-    h1 {margin-top:0;}
-    button {
-      border: none;
-      border-radius: 12px;
-      padding: 10px 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #ff2740, #ff5b7a);
-      color: white;
-    }
-    .btn-ghost {
-      background: #252530;
-      color: #fff;
-    }
-    .hidden {display:none;}
-    .modal {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.6);
-      display: none; place-items: center;
-    }
-    .modal .box {
-      background: #1a1a22;
-      padding: 20px;
-      border-radius: 16px;
-      width: min(90%, 500px);
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>משחק הזוגיות שלנו 💋</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Heebo', sans-serif;
+            background: linear-gradient(135deg, #0e0e12, #1f0b11);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(30,30,35,0.9);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 0 25px rgba(255,60,90,0.3);
+            width: min(90%, 600px);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        button {
+            border: none;
+            border-radius: 12px;
+            padding: 10px 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff2740, #ff5b7a);
+            color: white;
+        }
+
+        .btn-ghost {
+            background: #252530;
+            color: #fff;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            place-items: center;
+        }
+
+            .modal .box {
+                background: #1a1a22;
+                padding: 20px;
+                border-radius: 16px;
+                width: min(90%, 500px);
+            }
+    </style>
 </head>
 <body>
 
-<div class="card">
-  <h1>💋 משחק הזוגיות שלנו 💋</h1>
-  <p>תענו נכון – תרוויחו 💗, תטעו – חובה לוהטת מחכה לכם 🔥</p>
-  <button class="btn-primary" id="startBtn">התחילו משחק</button>
+    <div class="card">
+        <h1>🔥 משחק הזוגיות שלנו 🔥</h1>
+        <p>תענו נכון – תרוויחו 💗, תטעו – חובה רנדומלית בדרך 😈</p>
+        <button class="btn-primary" id="startBtn">התחילו משחק</button>
 
-  <div id="questionBox" class="hidden">
-    <h2 id="qTitle"></h2>
-    <div id="answers"></div>
-    <p id="feedback"></p>
-    <button class="btn-ghost" id="nextBtn" disabled>הבא ▶</button>
-  </div>
+        <div id="questionBox" class="hidden">
+            <h2 id="qTitle"></h2>
+            <div id="answers"></div>
+            <p id="feedback"></p>
+            <button class="btn-ghost" id="nextBtn" disabled>הבא ▶</button>
+        </div>
 
-  <div id="end" class="hidden">
-    <h2>סיימתם 💞</h2>
-    <p id="finalScore"></p>
-    <button class="btn-primary" id="againBtn">שחקו שוב</button>
-  </div>
-</div>
+        <div id="end" class="hidden">
+            <h2>סיימתם 💞</h2>
+            <p id="finalScore"></p>
+            <button class="btn-primary" id="againBtn">שחקו שוב</button>
+        </div>
+    </div>
 
-<!-- חובה -->
-<div class="modal" id="punishModal">
-  <div class="box">
-    <h3>חובה רנדומלית 🔥</h3>
-    <p id="punishText"></p>
-    <button class="btn-ghost" id="okPunish">בוצע ✔️</button>
-  </div>
-</div>
+    <!-- חובה -->
+    <div class="modal" id="punishModal">
+        <div class="box">
+            <h3>חובה רנדומלית 🔥</h3>
+            <p id="punishText"></p>
+            <button class="btn-ghost" id="okPunish">בוצע ✔️</button>
+        </div>
+    </div>
 
-<script>
-const QUESTIONS = [
-  // שאלות אישיות
-  { type:'mc', q:'באיזה עיר היה הדייט הראשון שלנו?', options:['תל אביב','נתניה','קיסריה','חיפה'], a:2 },
-  { type:'mc', q:'מה המאכל שאת הכי אוהבת?', options:['פיצה','סושי','המבורגר','פסטה'], a:1 },
-  { type:'mc', q:'מה המאכל שאני הכי אוהב?', options:['פסטה','שניצל','פלאפל','חביתה'], a:1 },
-  { type:'text', q:'איך נועם קורא לחבר שלו?', answer:['גנץ'] },
-  { type:'mc', q:'מה הכינוי שאני קורא לך?', options:['בובו','נוני','נסיכה','דובי'], a:1 },
-  { type:'mc', q:'מי נרדם קודם?', options:['נועם הגדול','נועם הגדולה','שנינו ביחד','תלוי בסרט'], a:1 },
-  { type:'mc', q:'אם היינו עכשיו בחופשה, לאן היינו טסים?', options:['יוון','צרפת','יפן','איטליה'], a:2 },
-  { type:'text', q:'כששיחקנו GeoGuessr, איזה יעד יצא הכי הרבה פעמים?', answer:['חיפה'] },
-  { type:'mc', q:'מה צבע העיניים של נועם?', options:['חום','כחול','ירוק','אפור'], a:1 },
-  { type:'mc', q:'מה נועם הכי אוהב להריח בנועם הגדולה?', options:['הבושם שלה','את השיער שלה','הסדין שלה','את האוכל שלה'], a:1 },
+    <script>
+        const QUESTIONS = [
+            // שאלות אישיות
+            { type: 'mc', q: 'באיזה עיר היה הדייט הראשון שלנו?', options: ['תל אביב', 'נתניה', 'קיסריה', 'חיפה'], a: 2 },
+            { type: 'mc', q: 'מה המאכל שאת הכי אוהבת?', options: ['פיצה', 'סושי', 'המבורגר', 'פסטה'], a: 1 },
+            { type: 'mc', q: 'מה המאכל שאני הכי אוהב?', options: ['פסטה', 'שניצל', 'פלאפל', 'חביתה'], a: 1 },
+            { type: 'text', q: 'איך נועם קורא לחבר שלו?', answer: ['גנץ'] },
+            { type: 'mc', q: 'מה הכינוי שאני קורא לך?', options: ['בובו', 'נוני', 'נסיכה', 'דובי'], a: 1 },
+            { type: 'mc', q: 'מי נרדם קודם?', options: ['נועם הגדול', 'נועם הגדולה', 'שנינו ביחד', 'תלוי בסרט'], a: 1 },
+            { type: 'mc', q: 'אם היינו עכשיו בחופשה, לאן היינו טסים?', options: ['יוון', 'צרפת', 'יפן', 'איטליה'], a: 2 },
+            { type: 'text', q: 'כששיחקנו GeoGuessr, איזה יעד יצא הכי הרבה פעמים?', answer: ['חיפה'] },
+            { type: 'mc', q: 'מה צבע העיניים של נועם?', options: ['חום', 'כחול', 'ירוק', 'אפור'], a: 1 },
+            { type: 'mc', q: 'מה נועם הכי אוהב להריח בנועם הגדולה?', options: ['הבושם שלה', 'את השיער שלה', 'הסדין שלה', 'את האוכל שלה'], a: 1 },
 
-  // ידע כללי בינוני
-  { type:'mc', q:'כמה יבשות יש בעולם?', options:['5','6','7','8'], a:2 },
-  { type:'mc', q:'מהו הכוכב הקרוב ביותר לשמש?', options:['נוגה','כדור הארץ','מרקורי','מאדים'], a:2 },
-  { type:'mc', q:'מי כתב את רומיאו ויוליה?', options:['צ׳ארלס דיקנס','ויליאם שייקספיר','ג׳ורג׳ אורוול','לאונרדו דה וינצ׳י'], a:1 },
-  { type:'mc', q:'איזו מדינה הגדולה בעולם?', options:['קנדה','סין','רוסיה','ארה״ב'], a:2 },
-  { type:'mc', q:'מהו המטבע הרשמי של יפן?', options:['ין','וואן','דולר','פזו'], a:0 },
-  { type:'mc', q:'באיזו שנה נחת האדם הראשון על הירח?', options:['1965','1969','1971','1975'], a:1 },
-  { type:'mc', q:'מהי בירת קנדה?', options:['טורונטו','מונטריאול','אוטווה','ונקובר'], a:2 },
-  { type:'mc', q:'איזה יסוד מסומן באות H?', options:['חמצן','מימן','הליום','פחמן'], a:1 },
+            // ידע כללי בינוני
+            { type: 'mc', q: 'כמה יבשות יש בעולם?', options: ['5', '6', '7', '8'], a: 2 },
+            { type: 'mc', q: 'מהו הכוכב הקרוב ביותר לשמש?', options: ['נוגה', 'כדור הארץ', 'מרקורי', 'מאדים'], a: 2 },
+            { type: 'mc', q: 'מי כתב את רומיאו ויוליה?', options: ['צ׳ארלס דיקנס', 'ויליאם שייקספיר', 'ג׳ורג׳ אורוול', 'לאונרדו דה וינצ׳י'], a: 1 },
+            { type: 'mc', q: 'איזו מדינה הגדולה בעולם?', options: ['קנדה', 'סין', 'רוסיה', 'ארה״ב'], a: 2 },
+            { type: 'mc', q: 'מהו המטבע הרשמי של יפן?', options: ['ין', 'וואן', 'דולר', 'פזו'], a: 0 },
+            { type: 'mc', q: 'באיזו שנה נחת האדם הראשון על הירח?', options: ['1965', '1969', '1971', '1975'], a: 1 },
+            { type: 'mc', q: 'מהי בירת קנדה?', options: ['טורונטו', 'מונטריאול', 'אוטווה', 'ונקובר'], a: 2 },
+            { type: 'mc', q: 'איזה יסוד מסומן באות H?', options: ['חמצן', 'מימן', 'הליום', 'פחמן'], a: 1 },
 
-  // ידע כללי קשה חדש
-  { type:'mc', q:'מהו שמו של הטלסקופ שהחליף את האבל?', options:['ג׳יימס ווב','קפלר','צ׳אנדרה','גליליאו'], a:0 },
-  { type:'mc', q:'מהו המרכיב העיקרי באוויר?', options:['חמצן','חנקן','פחמן דו חמצני','מימן'], a:1 },
-  { type:'mc', q:'איזו מדינה יזמה את בניית חומת ברלין?', options:['גרמניה המזרחית','גרמניה המערבית','ברית המועצות','פולין'], a:0 },
-  { type:'mc', q:'מהי תורת היחסות מיוחסת ל…?', options:['ניוטון','גלילאו','איינשטיין','דקארט'], a:2 },
-  { type:'mc', q:'מהו החומר הכימי שהופך עלים לירוקים?', options:['כלורופיל','גלוקוז','אצטון','מימן'], a:0 },
-  { type:'mc', q:'כמה מדינות יש כיום באו״ם?', options:['190','193','196','200'], a:1 },
-  { type:'mc', q:'איזו עיר מכונה עיר האורות?', options:['פריז','ניו יורק','לונדון','רומא'], a:0 }
-];
+            // ידע כללי קשה נוסף
+            { type: 'mc', q: 'מהו שמו של הטלסקופ שהחליף את האבל?', options: ['ג׳יימס ווב', 'קפלר', 'צ׳אנדרה', 'גליליאו'], a: 0 },
+            { type: 'mc', q: 'מהו המרכיב העיקרי באוויר?', options: ['חמצן', 'חנקן', 'פחמן דו חמצני', 'מימן'], a: 1 },
+            { type: 'mc', q: 'איזו מדינה יזמה את בניית חומת ברלין?', options: ['גרמניה המזרחית', 'גרמניה המערבית', 'ברית המועצות', 'פולין'], a: 0 },
+            { type: 'mc', q: 'מהי תורת היחסות מיוחסת ל…?', options: ['ניוטון', 'גלילאו', 'איינשטיין', 'דקארט'], a: 2 },
+            { type: 'mc', q: 'מהו החומר שהופך עלים לירוקים?', options: ['כלורופיל', 'גלוקוז', 'אצטון', 'מימן'], a: 0 },
+            { type: 'mc', q: 'כמה מדינות יש כיום באו״ם?', options: ['190', '193', '196', '200'], a: 1 },
+            { type: 'mc', q: 'איזו עיר מכונה עיר האורות?', options: ['פריז', 'ניו יורק', 'לונדון', 'רומא'], a: 0 }
+        ];
 
-const PUNISH = [
-  'נשיקה איטית על מקום שבוחר הצד השני 💋',
-  'להחזיק מבט 10 שניות בלי לדבר 😳',
-  'פינוק קצר בצוואר 😚',
-  'לחישה קרובה מאוד של משפט אחד שמדליק אותך 🫢',
-  'תתאר את מה שהכי מושך בבן/בת הזוג 💞',
-  'נשיקה עד ששניכם צוחקים 😅',
-  'נגיעה של 5 שניות במקום לבחירת הפרטנר 😉',
-  'תגיד משפט אחד שיגרום לשני להסמיק 🥰',
-  'להתקרב עד שהלב נוגע בלב בלי מילים ❤️',
-  'תדמיינו רגע מושלם ביחד ותתארו אותו לאט 🔥'
-];
+        // === כל החובות מכל הגרסאות ===
+        const PUNISH = [
+            'תבחרי מקום מעניין שאני אגע בו 10 שניות רצוף 😉',
+            'נשיקה איטית על מקום שבוחר הצד השני 💋',
+            'נשיקה איפה שבאלך 😘',
+            'אני בוחר מקום שאת נוגעת בו ל10 שניות 🔥',
+            'נשיקה עם לשון ארוכה 💋',
+            'אני יושב עליך 10 שניות (ואת לא זזה 😏)',
+            'את יושבת עלי 10 שניות (בלי לברוח 😈)',
+            'כל אחד אומר 3 דברים שמדליקים אותו בשני 😳',
+            'מבט של 10 שניות בלי לצחוק – מי שצוחק חייב נשיקה 😅',
+            'פינוק בצוואר ל-10 שניות 😚',
+            'לחישה באוזן משהו שמדליק אותך 🫢',
+            'תבחרי תנועה מפתה ואני צריך לחקות אותה 💃🕺',
+            'אני צריך לתאר אותך כאילו את קינוח 😋',
+            'נשיקה על מקום שהפרטנר בוחר (לא הפה 😈)',
+            'אני עושה לך מחמאה מלוכלכת אחת ואחת מתוקה 💞',
+            'נשיקת הפתעה בעיניים עצומות 👀💋',
+            'להחזיק מבט 15 שניות בשקט 🔥',
+            'אני נושם ליד האוזן שלך 5 שניות בלי לגעת 😮‍💨',
+            'שנינו עוצמים עיניים וכל אחד נוגע באצבע במקום שהוא רוצה שינשקו אותו 💫',
+            'את בוחרת משפט מפתה שאני צריך לומר לאט 😈',
+            'נשיקה שלא מסתיימת עד ששניכם מחייכים 😚',
+            'תתקרבו עד שהלב שלכם נוגע אחד בשני ❤️',
+            'לחישה קרובה של משהו רומנטי במיוחד 💌',
+            'תארי את הרגע הכי מפתה בינינו 🔥',
+            'פינוק איטי ביד או בצוואר ל־10 שניות 💞',
+            'להוריד בגד', 'למרוח את החומר', 'לאו על יבש', 'לגעת על הלשון', 'להתחכך בלי חדי', 'לשבת ולקפוץ 15 שניות עם בגדים', 'כל אחד מנשק לשני את ה',
+        ];
 
-// מנגנון ספירה – אותה חובה לא תחזור יותר מפעמיים
-const punishCount = {};
+        // מנגנון מניעת חזרה
+        const punishCount = {};
+        function showPunish() {
+            let available = PUNISH.filter(p => (punishCount[p] || 0) < 2);
+            if (available.length === 0) {
+                for (const key in punishCount) punishCount[key] = 0;
+                available = [...PUNISH];
+            }
+            const chosen = available[Math.floor(Math.random() * available.length)];
+            punishCount[chosen] = (punishCount[chosen] || 0) + 1;
+            document.getElementById('punishText').textContent = chosen;
+            document.getElementById('punishModal').style.display = 'grid';
+        }
 
-function showPunish() {
-  let available = PUNISH.filter(p => (punishCount[p] || 0) < 2);
-  if (available.length === 0) {
-    for (const key in punishCount) punishCount[key] = 0;
-    available = [...PUNISH];
-  }
-  const chosen = available[Math.floor(Math.random() * available.length)];
-  punishCount[chosen] = (punishCount[chosen] || 0) + 1;
-  document.getElementById('punishText').textContent = chosen;
-  document.getElementById('punishModal').style.display = 'grid';
-}
+        // ==== GAME LOGIC ====
+        const el = id => document.getElementById(id);
+        const startBtn = el('startBtn'), questionBox = el('questionBox'),
+            qTitle = el('qTitle'), answers = el('answers'),
+            feedback = el('feedback'), nextBtn = el('nextBtn'),
+            endBox = el('end'), finalScore = el('finalScore'),
+            againBtn = el('againBtn'), punishModal = el('punishModal'),
+            okPunish = el('okPunish');
 
-const el = id => document.getElementById(id);
-const startBtn = el('startBtn'), questionBox = el('questionBox'),
-      qTitle = el('qTitle'), answers = el('answers'),
-      feedback = el('feedback'), nextBtn = el('nextBtn'),
-      endBox = el('end'), finalScore = el('finalScore'),
-      againBtn = el('againBtn'), punishModal = el('punishModal'),
-      okPunish = el('okPunish');
+        let state = { idx: 0, score: 0, order: [], answered: false };
 
-let state = { idx:0, score:0, order:[], answered:false };
+        startBtn.onclick = () => {
+            startBtn.classList.add('hidden');
+            questionBox.classList.remove('hidden');
+            state.idx = 0; state.score = 0; state.answered = false;
+            state.order = [...Array(QUESTIONS.length).keys()].sort(() => Math.random() - 0.5);
+            showQuestion();
+        };
 
-startBtn.onclick = () => {
-  startBtn.classList.add('hidden');
-  questionBox.classList.remove('hidden');
-  state.idx=0; state.score=0; state.answered=false;
-  state.order=[...Array(QUESTIONS.length).keys()].sort(()=>Math.random()-0.5);
-  showQuestion();
-};
+        okPunish.onclick = () => punishModal.style.display = 'none';
 
-okPunish.onclick = () => punishModal.style.display='none';
+        function showQuestion() {
+            feedback.textContent = ''; nextBtn.disabled = true; answers.innerHTML = '';
+            const q = QUESTIONS[state.order[state.idx]];
+            qTitle.textContent = q.q;
+            if (q.type === 'mc') {
+                q.options.forEach((opt, i) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'btn-ghost'; btn.textContent = opt;
+                    btn.onclick = () => selectAnswer(btn, i === q.a);
+                    answers.appendChild(btn);
+                });
+            } else {
+                const input = document.createElement('input');
+                input.type = 'text'; input.placeholder = 'כתבו כאן תשובה';
+                input.style.padding = '10px'; input.style.borderRadius = '10px';
+                const btn = document.createElement('button');
+                btn.className = 'btn-primary'; btn.textContent = 'בדיקה';
+                btn.onclick = () => {
+                    const val = input.value.trim().toLowerCase();
+                    const ok = q.answer.some(a => val.includes(a.toLowerCase()));
+                    selectAnswer(btn, ok);
+                };
+                answers.append(input, btn);
+            }
+        }
 
-function showQuestion(){
-  feedback.textContent=''; nextBtn.disabled=true; answers.innerHTML='';
-  const q = QUESTIONS[state.order[state.idx]];
-  qTitle.textContent=q.q;
-  if(q.type==='mc'){
-    q.options.forEach((opt,i)=>{
-      const btn=document.createElement('button');
-      btn.className='btn-ghost'; btn.textContent=opt;
-      btn.onclick=()=>selectAnswer(btn,i===q.a);
-      answers.appendChild(btn);
-    });
-  } else {
-    const input=document.createElement('input');
-    input.type='text'; input.placeholder='כתבו כאן תשובה';
-    input.style.padding='10px'; input.style.borderRadius='10px';
-    const btn=document.createElement('button');
-    btn.className='btn-primary'; btn.textContent='בדיקה';
-    btn.onclick=()=>{
-      const val=input.value.trim().toLowerCase();
-      const ok=q.answer.some(a=>val.includes(a.toLowerCase()));
-      selectAnswer(btn,ok);
-    };
-    answers.append(input,btn);
-  }
-}
+        function selectAnswer(btn, correct) {
+            if (state.answered) return;
+            state.answered = true;
+            [...answers.querySelectorAll('button')].forEach(b => b.disabled = true);
+            if (correct) { feedback.textContent = 'נכון! 💗'; state.score++; }
+            else { feedback.textContent = 'טעית… חובה בדרך 😈'; showPunish(); }
+            nextBtn.disabled = false;
+        }
 
-function selectAnswer(btn,correct){
-  if(state.answered)return;
-  state.answered=true;
-  [...answers.querySelectorAll('button')].forEach(b=>b.disabled=true);
-  if(correct){feedback.textContent='נכון! 💗';state.score++;}
-  else{feedback.textContent='טעית… חובה בדרך 😈';showPunish();}
-  nextBtn.disabled=false;
-}
+        nextBtn.onclick = () => {
+            state.idx++;
+            if (state.idx >= QUESTIONS.length) return finish();
+            state.answered = false; showQuestion();
+        };
 
-nextBtn.onclick=()=>{
-  state.idx++;
-  if(state.idx>=QUESTIONS.length)return finish();
-  state.answered=false; showQuestion();
-};
-
-function finish(){
-  questionBox.classList.add('hidden');
-  endBox.classList.remove('hidden');
-  finalScore.textContent=`ציון: ${state.score}/${QUESTIONS.length}`;
-}
-againBtn.onclick=()=>location.reload();
-</script>
+        function finish() {
+            questionBox.classList.add('hidden');
+            endBox.classList.remove('hidden');
+            finalScore.textContent = `ציון: ${state.score}/${QUESTIONS.length}`;
+        }
+        againBtn.onclick = () => location.reload();
+    </script>
 </body>
 </html>
